@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+
+body {
+  font-family:'Beatrice Deck Trial', sans-serif;
+}
+
+@theme {
+
+  --font-display: 'Beatrice Deck Trial', sans-serif;
+  
+};

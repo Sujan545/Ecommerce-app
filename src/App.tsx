@@ -1,13 +1,14 @@
 
-
-import './App.css'
+import Navbar from './components/Navbar'
 
 function App() {
 
 
   return (
     <>
-<h1 className='text-bold text-red-800'>hello world</h1> 
+    <Navbar/>
+
+    <h1 className='text-4xl font-beatrica font-bold text-black text-center py-10'>firacode </h1>
     </>
   )
 }
