@@ -4,28 +4,28 @@ import { ShoppingCart, User } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <nav className="w-full  bg-black">
+    <nav className="w-full  bg-white">
       <div className=" px-6 flex h-16  items-center justify-between">
 
         {/* LEFT SIDE */}
         <div className="flex items-center gap-6">
           <Link
             to="/"
-            className="text-lg font-semibold text-white hover:text-primary transition"
+            className="text-lg font-semibold text-black hover:text-gray-700 transition"
           >
             ShopX
           </Link>
 
           <Link
             to="/"
-            className="text-sm text-gray-400 hover:text-white transition"
+            className="text-sm text-black hover:text-gray-700 transition"
           >
             Home
           </Link>
 
           <Link
             to="/collection"
-            className="text-sm text-gray-400 hover:text-white transition"
+            className="text-sm text-black hover:text-gray-700 transition"
           >
             Collection
           </Link>
@@ -35,14 +35,14 @@ export default function Navbar() {
         <div className="flex items-center gap-5">
           <Link
             to="/account"
-            className="text-gray-400 hover:text-white transition"
+            className="text-black hover:text-gray-700 transition"
           >
             <User size={20} />
           </Link>
 
           <Link
             to="/cart"
-            className="relative text-gray-400 hover:text-white transition"
+            className="relative text-black hover:text-gray-700 transition"
           >
             <ShoppingCart size={20} />
             {/* Cart badge */}
