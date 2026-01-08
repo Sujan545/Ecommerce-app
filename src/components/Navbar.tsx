@@ -1,8 +1,11 @@
 
 import { Link } from "react-router-dom";
 import { ShoppingCart, User } from "lucide-react";
+import { useCart } from "../context/CartContext";
 
 export default function Navbar() {
+
+  const {cart}=useCart();
   return (
     <nav className="w-full  bg-white">
       <div className=" px-6 flex h-16  items-center justify-between">
@@ -24,7 +27,7 @@ export default function Navbar() {
           </Link>
 
           <Link
-            to="/collection"
+            to="/products"
             className="text-sm text-black hover:text-gray-700 transition"
           >
             Collection
@@ -47,7 +50,7 @@ export default function Navbar() {
             <ShoppingCart size={20} />
             {/* Cart badge */}
             <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-white text-[10px] text-black">
-              2
+            {cart.reduce((a, c) => a + c.quantity, 0)}
             </span>
           </Link>
         </div>

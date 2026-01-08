@@ -1,3 +1,4 @@
+import { useCart } from "../context/CartContext";
 import type { product } from "../types/products";
 
 
@@ -6,6 +7,8 @@ interface ProductDetailsProps {
 }
 
 const ProductDetailsCard = ({ product }: ProductDetailsProps) => {
+
+    const { addToCart } = useCart();
     return (
         <div className=" mx-auto  rounded-lg shadow md:py-20 px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -44,7 +47,12 @@ const ProductDetailsCard = ({ product }: ProductDetailsProps) => {
                         )}
                     </div>
 
-                    <button className="mt-4 w-fit px-6 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition">
+                    <button
+                        onClick={(e) => {
+                            e.preventDefault(); 
+                            addToCart(product);
+                        }}
+                        className="mt-4 w-fit px-6 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition">
                         Add to Cart
                     </button>
                 </div>

@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import type { product } from "../types/products";
+import {useCart} from "../context/CartContext"
 
 interface ProductCardProps {
     product: product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+
+    const { addToCart } = useCart();
 
     return (
         <div className="group w-full max-w-sm mx-auto">
@@ -22,6 +25,24 @@ export default function ProductCard({ product }: ProductCardProps) {
                             {product.rating.rate}
                         </div>
                     )}
+                    <button
+                        onClick={(e) => {
+                            e.preventDefault(); 
+                            addToCart(product);
+                        }}
+                        className="absolute bottom-4 left-1/2 -translate-x-1/2
+                    w-10 h-8 rounded-lg bg-gray-300 text-black text-xl
+                    flex items-center justify-center
+                    opacity-0 translate-y-4 scale-90
+                    group-hover:opacity-100
+                    group-hover:translate-y-0
+                    group-hover:scale-100
+                    transition-all duration-300 ease-out
+                    z-10"
+                        aria-label="Add to cart"
+                    >
+                        +
+                    </button>
 
                     <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
