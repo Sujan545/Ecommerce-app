@@ -1,9 +1,6 @@
 import type { Cart } from "../types/cart";
 import { api } from "./axios";
 
-
-
-
  export const getCarts = async ():Promise<Cart[]>=>{
     const res= await api.get("/carts")
     return res.data;
