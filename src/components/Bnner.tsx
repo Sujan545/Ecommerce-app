@@ -3,7 +3,7 @@
 export default function Banner() {
     return (
         <>
-            <section className="bg-[#f6f6f4] md:py-24 px-6">
+            <section className="bg-[#f6f6f4] md:py-10 px-6">
              
                 <div className="max-w-4xl mx-auto text-center md:mb-20">
                     <h2 className="text-3xl md:text-5xl font-medium tracking-wide uppercase">
