@@ -49,7 +49,7 @@ export default function HomePage() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 text-sm border transition
+              className={`px-4 py-2 text-sm border border-gray-300 transition
                 ${selectedCategory === cat
                   ? "bg-black text-white"
                   : "hover:bg-gray-100"
@@ -62,7 +62,7 @@ export default function HomePage() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {currentProducts.map((p: product) => (
-            <ProductCard key={p.id} product={p} />
+            <ProductCard key={p.id}  product={p} />
           ))}
         </div>
 

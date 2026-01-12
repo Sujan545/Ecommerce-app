@@ -1,15 +1,36 @@
 import { Link } from "react-router-dom";
 import type { product } from "../types/products";
-import {useCart} from "../context/CartContext"
+import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
+
 
 interface ProductCardProps {
     product: product;
+    addToCart: (product: product) => void;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
 
     const { addToCart } = useCart();
+    const { user, openLoginModal } = useAuth();
+    const handleAddToCart = (e: React.MouseEvent) => {
+        e.preventDefault();
 
+        if (!user) {
+            // If user not logged in, open login modal
+            openLoginModal();
+            return;
+        }
+
+        // Add product to cart
+        addToCart({
+            productId: product.id,
+            title: product.title,
+            price: product.price,
+            image: product.image,
+            quantity: 1,
+        });
+    };
     return (
         <div className="group w-full max-w-sm mx-auto">
             <Link to={`/product/${product.id}`}>
@@ -27,8 +48,8 @@ export default function ProductCard({ product }: ProductCardProps) {
                     )}
                     <button
                         onClick={(e) => {
-                            e.preventDefault(); 
-                            addToCart(product);
+                            e.preventDefault();
+                            handleAddToCart(e)
                         }}
                         className="absolute bottom-4 left-1/2 -translate-x-1/2
                     w-10 h-8 rounded-lg bg-gray-300 text-black text-xl

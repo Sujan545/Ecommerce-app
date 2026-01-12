@@ -1,16 +1,23 @@
 import { Link } from "react-router-dom";
 import { ShoppingCart, User } from "lucide-react";
-import { useCart } from "../context/CartContext";
+
 import { useState } from "react";
 import LoginModal from "../utils/LoginModal";
 import { useAuth } from "../context/AuthContext";
 import UserMenu from "../utils/UserMenu";
+import { useCart } from "../context/CartContext";
 
 export default function Navbar() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const { cart } = useCart();
+
+  const totalItems = cart.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
+
   const { user } = useAuth();
 
   return (
@@ -47,9 +54,11 @@ export default function Navbar() {
 
             <Link to="/cart" className="relative">
               <ShoppingCart size={20} />
-              <span className="absolute -top-2 -right-2 h-4 w-4 text-[10px] flex items-center justify-center ">
-                {cart.reduce((a, c) => a + c.quantity, 0)}
-              </span>
+                {totalItems > 0 && (
+               <span className="absolute -top-2 -right-2 h-4 w-4 text-[10px] flex items-center justify-center ">
+                    {cart.reduce((sum, i) => sum + i.quantity, 0)}
+              </span> 
+                )}
             </Link>
           </div>
         </div>

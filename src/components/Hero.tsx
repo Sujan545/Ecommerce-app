@@ -18,7 +18,7 @@ export default function Hero() {
                         <div className="flex items-center gap-4">
 
 
-                            <button className="group mt-10 inline-flex items-center gap-4 border border-black px-6 py-2 text-sm font-medium text-black transition hover:bg-black hover:text-white">
+                            <button className="group mt-10 inline-flex items-center gap-4  border border-gray-300 px-6 py-2 text-sm font-medium text-black transition hover:bg-black hover:text-white">
                                 Go To Shop
                                 <ArrowRight
                                     size={18}
@@ -27,10 +27,10 @@ export default function Hero() {
                             </button>
 
                             <div className="mt-10 flex  gap-3">
-                                <button className="flex h-9 w-9 items-center justify-center border border-gray-400 text-gray-700 hover:bg-black hover:text-white transition">
+                                <button className="flex h-9 w-9 items-center justify-center border border-gray-300 text-gray-700 hover:bg-black hover:text-white transition">
                                     <ChevronLeft size={16} />
                                 </button>
-                                <button className="flex h-9 w-9 items-center justify-center border border-gray-400 text-gray-700 hover:bg-black hover:text-white transition">
+                                <button className="flex h-9 w-9 items-center justify-center border border-gray-300 text-gray-700 hover:bg-black hover:text-white transition">
                                     <ChevronRight size={16} />
                                 </button>
                             </div>

@@ -17,7 +17,7 @@ export default function Pagination({
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="px-1 py-0.5 text-sm border disabled:opacity-40 hover:bg-black hover:text-white transition"
+        className="px-1 py-0.5 text-sm border border-gray-300 text-black disabled:opacity-40 hover:bg-black hover:text-white transition"
       >
         <ChevronLeft className="h-5"/>
       </button>
@@ -27,7 +27,7 @@ export default function Pagination({
         <button
           key={page}
           onClick={() => onPageChange(page)}
-          className={`px-2 py-0.5 text-sm border transition
+          className={`px-2 py-0.5 text-sm border border-gray-300 text-black transition
             ${
               currentPage === page
                 ? "bg-black text-white"
@@ -42,7 +42,7 @@ export default function Pagination({
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="px-1 py-0.5 text-sm border disabled:opacity-40 hover:bg-black hover:text-white transition"
+        className="px-1 py-0.5 text-sm border border-gray-300 disabled:opacity-40 hover:bg-black hover:text-white transition"
       >
     <ChevronRight className="h-5"/>
           </button>
