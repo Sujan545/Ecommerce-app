@@ -9,7 +9,7 @@ interface ProductCardProps {
     addToCart: (product: product) => void;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product}: ProductCardProps) {
 
     const { addToCart } = useCart();
     const { user, openLoginModal } = useAuth();
@@ -47,10 +47,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                         </div>
                     )}
                     <button
-                        onClick={(e) => {
-                            e.preventDefault();
-                            handleAddToCart(e)
-                        }}
+                     onClick={handleAddToCart}
                         className="absolute bottom-4 left-1/2 -translate-x-1/2
                     w-10 h-8 rounded-lg bg-gray-300 text-black text-xl
                     flex items-center justify-center

@@ -5,11 +5,13 @@ import { useProducts } from "../hooks/useProducts";
 import Pagination from "../utils/Pagination";
 import Banner from "../components/Bnner";
 import type { product } from "../types/products";
+import { useCart } from "../context/CartContext";
 
 const ITEMS_PER_PAGE = 4;
 
 export default function HomePage() {
   const { products, loading } = useProducts();
+  const {addProductToCart}=useCart();
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -62,7 +64,7 @@ export default function HomePage() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {currentProducts.map((p: product) => (
-            <ProductCard key={p.id}  product={p} />
+            <ProductCard key={p.id}  addToCart={addProductToCart} product={p} />
           ))}
         </div>
 

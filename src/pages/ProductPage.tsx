@@ -2,67 +2,38 @@ import { useEffect, useState } from "react";
 import { useProducts } from "../hooks/useProducts";
 import ProductCard from "../utils/ProductCard";
 import Pagination from "../utils/Pagination";
-import type { CartItem } from "../types/cart";
-import type { product } from "../types/products";
+import { useCart } from "../context/CartContext";
 
 const ITEMS_PER_PAGE = 8;
 
 export default function ProductPage() {
   const { products, loading } = useProducts();
+  const { addToCart } = useCart(); // ✅ Using CartContext
 
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
 
-  // 🛒 CART STATE
-  const [cart, setCart] = useState<CartItem[]>([]);
-
-  // ➕ ADD TO CART FUNCTION
-  const addToCart = (product: product) => {
-    setCart(prev => {
-      const existing = prev.find(
-        item => item.productId === product.id
-      );
-
-      if (existing) {
-        return prev.map(item =>
-          item.productId === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-
-      return [
-        ...prev,
-        {
-          productId: product.id,
-          title: product.title,
-          price: product.price,
-          image: product.image,
-          quantity: 1,
-        },
-      ];
-    });
-  };
-
-  // 🧠 Categories
+  // Categories
   const categories = [
     "all",
-    ...Array.from(new Set(products.map(p => p.category))),
+    ...Array.from(new Set(products.map((p) => p.category))),
   ];
 
+  // Filtered products by category
   const filteredProducts =
     selectedCategory === "all"
       ? products
-      : products.filter(p => p.category === selectedCategory);
+      : products.filter((p) => p.category === selectedCategory);
 
+  // Pagination logic
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
-
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const currentProducts = filteredProducts.slice(
     startIndex,
     startIndex + ITEMS_PER_PAGE
   );
 
+  // Reset page when category changes
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedCategory]);
@@ -91,11 +62,19 @@ export default function ProductPage() {
 
       {/* Products */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 bg-[#f6f6f4]">
-        {currentProducts.map(p => (
+        {currentProducts.map(product => (
           <ProductCard
-            key={p.id}
-            product={p}
-            addToCart={addToCart}   // ✅ PASS HERE
+            key={product.id}
+            product={product}
+           addToCart={() =>
+              addToCart({
+                productId: product.id,
+                title: product.title,
+                price: product.price,
+                image: product.image,
+                quantity: 1,
+              })
+            }
           />
         ))}
       </div>
@@ -108,9 +87,6 @@ export default function ProductPage() {
           onPageChange={setCurrentPage}
         />
       )}
-
-      {/* Debug (optional) */}
-      {/* <pre>{JSON.stringify(cart, null, 2)}</pre> */}
     </div>
   );
 }

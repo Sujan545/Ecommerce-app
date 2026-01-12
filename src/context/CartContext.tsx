@@ -1,9 +1,11 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import type { CartItem } from "../types/cart";
+import type { product } from "../types/products";
 
 interface CartContextType {
   cart: CartItem[];
   addToCart: (item: CartItem) => void;
+   addProductToCart: (product: product) => void;
   increase: (id: number) => void;
   decrease: (id: number) => void;
   remove: (id: number) => void;
@@ -39,6 +41,17 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+    const addProductToCart = (product: product) => {
+    addToCart({
+      productId: product.id,
+      title: product.title,
+      price: product.price,
+      image: product.image,
+      quantity: 1,
+    });
+  };
+
+
   const increase = (id: number) => {
     saveCart(
       cart.map((i) =>
@@ -67,7 +80,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, increase, decrease, remove, clearCart }}
+      value={{ cart, addToCart, increase, decrease, remove, clearCart,addProductToCart}}
     >
       {children}
     </CartContext.Provider>

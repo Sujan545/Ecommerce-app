@@ -19,7 +19,7 @@ export function useLogin() {
       localStorage.setItem("token", data.token);
 
       // ✅ Store user globally
-      setUser(credentials.username);
+      setUser(credentials.username,1);
 
       return data;
     } catch (err) {
